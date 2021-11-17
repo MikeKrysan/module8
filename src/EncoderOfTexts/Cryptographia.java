@@ -1,12 +1,13 @@
 package EncoderOfTexts;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Cryptographia {
     String text;
     int shift;
-   // Scanner text = new Scanner(System.in);
-   // String line = text.nextLine();
+
     public Cryptographia(String text, int shift) {
         this.text = text;
         this.shift = shift;
@@ -45,8 +46,11 @@ public class Cryptographia {
         Scanner text = new Scanner(System.in);
         String line = text.nextLine();
         Cryptographia crypto = new Cryptographia(line, -1);
+        LocalDate localDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); //https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html
+        String formattedDateString = localDate.format(formatter); //todo use in our code
         System.out.println("Внимание, сейчас мы зашифруем текст!");
-        System.out.println(decrypt(crypto.text, -1));
+        System.out.println((decrypt(crypto.text, -1)) + " " +  formattedDateString);
         System.out.println("А теперь мы вернем его обратно, как был: ");
         System.out.println(encrypt(crypto.text, 0));
     }
